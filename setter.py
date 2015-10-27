@@ -17,7 +17,7 @@ mldb = db.connect(config.get('db_host'),
 
 mf = db.query(mldb,"SELECT master_file FROM media WHERE regno = '000003338-RMNH.CRUS.D.31690'")
 print mf
-exit() 
+exit()
 #### DOWNLOADING AND INDEXING PART
 # requests = restore.getTar(5)
 #

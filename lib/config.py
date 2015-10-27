@@ -1,8 +1,7 @@
 configfilename = 'config.ini'
 
 import ConfigParser
-import log
-
+from . import log
 
 def get(setting,section='Default'):
 	config = ConfigParser.RawConfigParser()

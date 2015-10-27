@@ -2,16 +2,22 @@
 
 from lib import *
 import time
+import json
 
 # good restore example:
 # directory = /20130610
 # file = 1292_HERBARIUMWAG_20130610235917.tar
 # restore.getTar('20130718','0235_HERBARIUMWAG_20130718000130.tar')
-#print config.get('db_host','tar_index')
-#print config.get('db_host','ml_analyse')
+config.get('db_host')
 
+mldb = db.connect(config.get('db_host'),
+                  config.get('db_user'),
+                  config.get('db_password'),
+                  config.get('db_name'))
 
-
+mf = db.query(mldb,"SELECT master_file FROM media WHERE regno = '000003338-RMNH.CRUS.D.31690'")
+print mf
+exit() 
 #### DOWNLOADING AND INDEXING PART
 # requests = restore.getTar(5)
 #
@@ -52,7 +58,6 @@ import time
 #######################################
 #logger = log
 #logger.logger.info('ha')
-import json
 payload = {
     'ids':['a','b','c'],
     'timestamp' : '2014-04-03',

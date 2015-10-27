@@ -1,0 +1,10 @@
+# Project specific
+
+*.ini
+*.tar
+*.log
+data/*
+teststuf/*
+old/*
+sql/*
+*.pyc

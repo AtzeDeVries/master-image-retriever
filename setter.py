@@ -30,6 +30,7 @@ def get_regno_list():
 
         mq.setex('status:query',q,'done query',300)
         if files:
+            files = set(files)
             payload = ",".join(files)
             log.logger.debug(payload)
             mq.put('data:master_list',q,payload)

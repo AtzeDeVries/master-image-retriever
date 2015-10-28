@@ -28,6 +28,7 @@ def get_master_list():
         if not os.path.exists(newdir):
             os.makedirs(newdir)
         for i in data.split(","):
+            os.chdir(cwd)
             newname = os.path.join(newdir,i.split("/")[-1][10:])
             shutil.copy2(i,newname)
             print i

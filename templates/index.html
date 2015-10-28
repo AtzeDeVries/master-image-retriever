@@ -15,12 +15,23 @@
 
 <div class="container" id="content">
     <div class="row">
+        <form id="emit" method="POST" action='#'>
+            <label for="emit_data">List of ID's. Comma separated</label><br />
+            <textarea cols="100" rows="2" type="text" name="emit_data" id="emit_data"></textarea>
+            <br/><input type="submit" value="request files">
+        </form>
         <hr/>
-        <p>Query Status</p>
+        <h3>Query Status</h3>
         <div id="query"></div>
         <hr/>
-        <p>Maste File finder</p>
+        <h3>Master File finder</h3>
         <div id="filefind"></div>
+        <hr/>
+        <h3>Downloads</h3>
+        <div id="downloads"></div>
+        <hr/>
+        <h3>Errors</h3>
+        <div id="errors"></div>
         <hr/>
     </div>
 </div>

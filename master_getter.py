@@ -52,16 +52,13 @@ from lib import *
 #logger = log
 #logger.logger.info('ha')
 q = mq.redis_connect()
-print(mq.qsize('queue:test',q))
-a = mq.block_pop('queue:test',q)
-#print(a)
-print(mq.qsize('queue:test',q))
-
-import json
-
-payload = json.loads(a)
-for i in payload['ids']:
-    print(i)
+payload = '000003366-000003338-RMNH.CRUS.D.31690,adffd,adgage'
+print payload
+mq.put('data:regno_list',q,payload)
+#
+# payload = json.loads(a)
+# for i in payload['ids']:
+#     print(i)
 #print(payload)
 #master_file = master.get_my_master('000003366-000003338-RMNH.CRUS.D.31690')
 #master.copy_my_master(master_file,'/tmp')

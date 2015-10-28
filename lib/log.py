@@ -3,8 +3,8 @@ import logging
 
 filehandler = True
 
-#level = logging.DEBUG
-level = logging.INFO
+level = logging.DEBUG
+#level = logging.INFO
 
 #logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -18,8 +18,8 @@ if filehandler:
 	fh.setLevel(level)
 	fh.setFormatter(formatter)
 	logger.addHandler(fh)
-
-ch = logging.StreamHandler()
-ch.setLevel(level)
-ch.setFormatter(formatter)
-logger.addHandler(ch)
+else:
+	ch = logging.StreamHandler()
+	ch.setLevel(level)
+	ch.setFormatter(formatter)
+	logger.addHandler(ch)

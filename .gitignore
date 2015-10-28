@@ -8,3 +8,4 @@ teststuf/*
 old/*
 sql/*
 *.pyc
+*.zip

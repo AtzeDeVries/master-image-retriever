@@ -75,11 +75,28 @@ def run_download():
                           attachment_filename=fullpath.split("/")[-1],
                           as_attachment=True)
 
+def start_query_process():
+    if os.system("ps aux | grep -v grep | grep setter.py ") == 0 :
+        log.logger.debug("Process setter.py is running")
+        return "Query proccess is running but not working.. contact Piet!"
+    else
+        log.logger.debug("Starting setter.py")
+        os.system("/usr/bin/python2.7 ./setter.py  > /dev/null &")
+        return "Launched query process"
+
+
+def start_master_process():
+    pass
+
 def ping_thread():
     count = 0
     while True:
         time.sleep(1)
         qstatus = get_query_status()
+
+        if qstatus == 'query process not running!':
+            start_query_process()
+        
         mstatus = get_master_status()
         check_errors()
         dstatus = check_downloads()

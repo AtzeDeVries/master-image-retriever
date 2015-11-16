@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.7
+
 from flask import Flask, render_template, send_file, redirect
 from flask.ext.socketio import SocketIO, send, emit
 import threading
@@ -86,7 +88,13 @@ def start_query_process():
 
 
 def start_master_process():
-    pass
+    if os.system("ps aux | grep -v grep | grep get_master.py ") == 0 :
+        log.logger.debug("Process get_master.py is running")
+        return "Master file proccess is running but not working.. contact Piet!"
+    else:
+        log.logger.debug("Starting get_master.py")
+        os.system("/usr/bin/python2.7 ./get_master.py  > /dev/null &")
+        return "Launched master file process"
 
 def ping_thread():
     count = 0
@@ -95,9 +103,13 @@ def ping_thread():
         qstatus = get_query_status()
 
         if qstatus == 'query process not running!':
-            start_query_process()
+            qstatus = start_query_process()
 
         mstatus = get_master_status()
+
+        if mstatus == 'master_file process not running!':
+            mstatus = start_master_process()
+
         check_errors()
         dstatus = check_downloads()
         socketio.emit('querystatus', {'data': qstatus}, namespace='/mir')

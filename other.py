@@ -16,6 +16,11 @@ def handle_message():
     #socketio.emit('newnumber', {'number': 'online'}, namespace='/mir')
 
 
+@socketio.on('disconnect', namespace='/mir')
+def handle_disconnect():
+    log.logger.debug('user diconnected')
+
+
 def get_query_status():
     status = mq.get('status:query',q)
     if status is None:

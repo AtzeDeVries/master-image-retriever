@@ -119,4 +119,4 @@ if __name__ == '__main__':
     t.daemon = True
     t.start()
     # start socket webapp
-    socketio.run(app)
+    socketio.run(app,host='0.0.0.0')

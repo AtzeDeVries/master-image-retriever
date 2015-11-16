@@ -84,6 +84,7 @@ def start_query_process():
     else:
         log.logger.debug("Starting setter.py")
         os.system("/usr/bin/python2.7 ./setter.py  > /dev/null &")
+        mq.setex('status:query',q,'waiting for input')
         return "Launched query process"
 
 
@@ -95,6 +96,7 @@ def start_master_process():
         log.logger.debug("Starting get_master.py")
         os.system("/usr/bin/python2.7 ./get_master.py  > /dev/null &")
         return "Launched master file process"
+        mq.setex('status:master_file',q,'waiting for input')
 
 def ping_thread():
     count = 0
@@ -109,6 +111,7 @@ def ping_thread():
 
         if mstatus == 'master_file process not running!':
             mstatus = start_master_process()
+
 
         check_errors()
         dstatus = check_downloads()

@@ -80,7 +80,7 @@ def run_download():
 def start_query_process():
     if os.system("ps aux | grep -v grep | grep setter.py ") == 0 :
         log.logger.debug("Process setter.py is running")
-        return "Query proccess is running but not working.. contact Piet!"
+        return "Process is running"
     else:
         log.logger.debug("Starting setter.py")
         os.system("/usr/bin/python2.7 ./setter.py  > /dev/null &")
@@ -90,7 +90,7 @@ def start_query_process():
 def start_master_process():
     if os.system("ps aux | grep -v grep | grep get_master.py ") == 0 :
         log.logger.debug("Process get_master.py is running")
-        return "Master file proccess is running but not working.. contact Piet!"
+        return "Process is running"
     else:
         log.logger.debug("Starting get_master.py")
         os.system("/usr/bin/python2.7 ./get_master.py  > /dev/null &")
@@ -100,15 +100,15 @@ def ping_thread():
     count = 0
     while True:
         time.sleep(1)
-        qstatus = get_query_status()
+        #qstatus = get_query_status()
 
-        if qstatus == 'query process not running!':
-            qstatus = start_query_process()
+        #if qstatus == 'query process not running!':
+        qstatus = start_query_process()
 
-        mstatus = get_master_status()
+        #mstatus = get_master_status()
 
-        if mstatus == 'master_file process not running!':
-            mstatus = start_master_process()
+        #if mstatus == 'master_file process not running!':
+        mstatus = start_master_process()
 
 
         check_errors()
